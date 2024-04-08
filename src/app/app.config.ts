@@ -1,9 +1,15 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideInitialState } from 'gentleman-signals-state-manager';
+import { routes } from './app.routes';
+import { emptyAppSignalState } from './src/models/signals.model';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration()]
+  providers: [
+    provideInitialState(emptyAppSignalState),
+    provideRouter(routes),
+    provideClientHydration(),
+  ],
 };
